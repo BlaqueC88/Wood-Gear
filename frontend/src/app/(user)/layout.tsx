@@ -6,6 +6,7 @@ import { ChakraProvider } from '@chakra-ui/react'
 import { Navbar } from '@src/components/Navbar/Navbar';
 import { theme } from '@src/theme'
 import { Footer } from '@src/components/Footer/Footer';
+import { AppContextProvider } from '@src/context/AppContext';
 
 export default function RootLayout({
   children,
@@ -17,16 +18,18 @@ export default function RootLayout({
       <head>
         <title>Wood Gear</title>
         <meta 
-          name="description" content="Wood products for the home, office and person." 
+          title="description" content="Wood products for the home, office and person." 
         />
         <link rel="shortcut icon" href="/images/Logo.jpg" type="image/jpg" />
       </head>
       <body>
         <CacheProvider>
           <ChakraProvider theme={theme}>
-            <Navbar />
-            {children}
-            <Footer />
+            <AppContextProvider>
+              <Navbar />
+              {children}
+              <Footer />
+            </AppContextProvider>
           </ChakraProvider>
         </CacheProvider>
       </body>

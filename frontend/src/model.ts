@@ -18,8 +18,8 @@ export interface IProduct {
   rating: IRating;
   slug: string;
   mainImage: string;
-  category: ICategory;
-  gallery: string[];
+  category?: ICategory;
+  gallery?: string[];
 }
 
 export interface ICategory {

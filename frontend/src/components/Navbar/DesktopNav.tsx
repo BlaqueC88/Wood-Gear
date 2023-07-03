@@ -4,6 +4,8 @@ import { desktopNavStyles, logoSectionStyles, cartSectionStyles } from './style'
 import { AppLogo } from '../AppLogo/AppLogo'
 import { navItems } from '@src/helpers'
 import { Search } from '../Search/Search'
+import { Wishlist } from '../Wishlist/Wishlist'
+import { Cart } from '../Cart/Cart'
 
 export const DesktopNav = () => {
   return (
@@ -21,8 +23,8 @@ export const DesktopNav = () => {
       </Stack>
 
       <Stack {...cartSectionStyles}>
-        <Box>Wishlist</Box>
-        <Box>Cart</Box>
+        <Wishlist />
+        <Cart />
       </Stack>
     </Flex>
   )

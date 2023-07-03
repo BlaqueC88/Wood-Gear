@@ -3,17 +3,23 @@ import React from 'react'
 import { AppLogo } from '../AppLogo/AppLogo'
 import { mobileNavContainer, mobileSearchWrapper } from './style'
 import { Search } from '../Search/Search'
+import { MobileNavMenu } from './MobileNavMenu'
+import { Wishlist } from '../Wishlist/Wishlist'
+import { Cart } from '../Cart/Cart'
 
 export const MobileNav = () => {
   return (
     <Box >
       <Flex {...mobileNavContainer} >
-        <Box>Nav Menu</Box>
+        <Box>
+          <MobileNavMenu />
+        </Box>
+        
         <AppLogo />
 
         <Stack direction="row" spacing={1}>
-          <Text>Wishlist</Text>
-          <Text>Cart</Text>
+          <Wishlist />
+          <Cart />
         </Stack>
       </Flex>
       <Box {...mobileSearchWrapper}>

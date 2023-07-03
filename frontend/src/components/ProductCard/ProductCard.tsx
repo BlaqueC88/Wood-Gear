@@ -1,32 +1,46 @@
-import { Card, CardBody, Flex, Heading, Image, Stack, Text } from '@chakra-ui/react'
+import { Box, Card, CardBody, Flex, Heading, Image, Stack, Text } from '@chakra-ui/react'
 import React from 'react'
 import { productCardStyles } from './style'
 import { Rating } from '../Rating/Rating'
 import { AddToCartButton } from '../Cart/AddToCartButton'
+import { IProduct } from '@src/model'
+import { getSubstring } from '@src/helpers'
+import { AddToWishlistButton } from '../AddToWishlistButton/AddToWishlistButton'
+import Link from 'next/link'
 
-export const ProductCard = () => {
+interface ProductCardProps {
+  product: IProduct;
+}
+
+export const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <Card {...productCardStyles}>
       <CardBody>
-        <Image
-          src='https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80'
-          alt='Green double couch with wooden legs'
-          borderRadius='lg'
-        />
+        <AddToWishlistButton product={product} />
+        <Link href={`/products/${product.slug}`}>
+          <Box
+            bg={`center / contain no-repeat url(${product.mainImage})`}
+            borderRadius="lg"
+            boxSize="200px"
+            mx="auto"
+          />
+        </Link>
         <Stack mt='6' spacing='3'>
           <Flex justify="space-between" align="center">
-            <Heading size='md'>Living room Sofa</Heading>
+            <Link href={`/products/${product.slug}`}>
+              <Heading size='sm'>{getSubstring(product.name, 20)}</Heading>
+            </Link>
             <Flex color="brand.primaryDark" fontWeight="bold">
               <Text fontSize="sm">R </Text>
-              <Text fontSize="lg">500</Text>
+              <Text fontSize="lg">{product.price}</Text>
             </Flex>
           </Flex>
-          <Text>
-            This sofa is perfect for modern tropical spaces.
+          <Text fontSize="sm">
+            {getSubstring(product.description, 30)}
           </Text>
-          <Rating />
+          <Rating rating={product.rating} />
 
-          <AddToCartButton />
+          <AddToCartButton product={product} />
         </Stack>
       </CardBody>
     </Card>

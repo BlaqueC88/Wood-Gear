@@ -96,6 +96,7 @@ export const Footer = () => {
             <ListHeader>Get the best deals</ListHeader>
             <Stack direction={'row'}>
               <Input
+                name="footer-input"
                 placeholder="Your email address"
                 bg="blackAlpha.100"
                 border={0}

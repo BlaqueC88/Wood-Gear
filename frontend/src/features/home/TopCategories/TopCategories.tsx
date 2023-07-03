@@ -4,8 +4,13 @@ import { Box, Card, CardBody, Grid, GridItem, Heading, Image, Text } from '@chak
 import { SectionHeading } from '@src/components/SectionHeading/SectionHeading'
 import React from 'react'
 import { cardStyles, categoriesWrapperStyles } from './style'
+import { ICategory } from '@src/model'
 
-export const TopCategories = () => {
+interface TopCategoriesProps {
+  categories: ICategory[];
+}
+
+export const TopCategories = ({ categories }: TopCategoriesProps) => {
   return (
     <Box {...categoriesWrapperStyles}>
       <SectionHeading title={"Our Top Categories"} />
@@ -18,39 +23,33 @@ export const TopCategories = () => {
         }}
         gap="4"
       >
-        <GridItem>
-          <TopCategoryCard />
-        </GridItem>
-
-        <GridItem>
-          <TopCategoryCard />
-        </GridItem>
-
-        <GridItem>
-          <TopCategoryCard />
-        </GridItem>
-
-        <GridItem>
-          <TopCategoryCard />
-        </GridItem>
+        {categories.map((category) => (
+          <GridItem key={category.id}>
+            <TopCategoryCard category={category} />
+          </GridItem>
+        ))}
       </Grid>
     </Box>
   )
 };
 
-const TopCategoryCard = () => {
+interface TopCategoryCardProps {
+  category: ICategory;
+}
+
+const TopCategoryCard = ({ category }: TopCategoryCardProps) => {
   return (
     <Card {...cardStyles}>
       <Image 
-        src="/images/c9e5ebabf7e8c5041847f3938eb7ac38.jpg"
-        alt=""
+        src={category.image}
+        alt={category.name}
         height={100}
         width={100}
       />
 
       <CardBody>
         <Heading size={{ base: 'sm', lg: 'md' }}>
-          Watches
+          {category.name}
         </Heading>
       </CardBody>
     </Card>
